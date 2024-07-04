@@ -1,5 +1,15 @@
 from bs4 import BeautifulSoup
 import pandas as pd
+import re
+
+
+# Function to convert headers to snake_case
+def to_snake_case(s):
+    s = re.sub(r'[^\w\s]', '', s)  # Remove all non-alphanumeric characters except spaces
+    s = s.strip().lower()  # Convert to lowercase and strip leading/trailing spaces
+    s = re.sub(r'\s+', '_', s)  # Replace spaces with underscores
+    return s
+
 
 # Read the HTML table
 with open('insert-html-table.html', 'r', encoding='utf-8') as file:
