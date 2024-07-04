@@ -19,6 +19,12 @@ rows = []
 for tr in table.find_all('tr')[1:]:  # Skip the header row
     cells = tr.find_all('td')
     row = []
+    for cell in cells:
+        # Check for images in the cell
+        if cell.find('img'):
+            row.append(', '.join([img['src'] for img in cell.find_all('img')]))
+        else:
+            row.append(cell.text.strip())
     rows.append(row)
 
 # Create a DataFrame
